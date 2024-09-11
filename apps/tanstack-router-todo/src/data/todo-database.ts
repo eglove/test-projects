@@ -25,79 +25,64 @@ const initDatabase = async () => {
   });
 };
 
-export const addTodo = async (todo: Omit<Todo, "id">) => {
-  const database = await initDatabase();
-  const tx = database.transaction(STORE_NAME, "readwrite");
-  const store = tx.objectStore(STORE_NAME);
-  await store.add(todo);
-  await tx.done;
-};
-
 export const addTodoOptions = () => {
   return {
-    mutationFn: addTodo,
+    mutationFn: async (todo: Omit<Todo, "id">) => {
+      const database = await initDatabase();
+      const tx = database.transaction(STORE_NAME, "readwrite");
+      const store = tx.objectStore(STORE_NAME);
+      await store.add(todo);
+      await tx.done;
+    },
     mutationKey: ["todos", "add"],
   };
 };
 
-
-export const getTodos = async () => {
-  const database = await initDatabase();
-  const tx = database.transaction(STORE_NAME, "readonly");
-  const store = tx.objectStore(STORE_NAME);
-  const todos = await store.getAll();
-  await tx.done;
-  return todos as Todo[];
-};
-
 export const getTodosOptions = () => {
   return queryOptions({
-    queryFn: getTodos,
+    queryFn: async () => {
+      const database = await initDatabase();
+      const tx = database.transaction(STORE_NAME, "readonly");
+      const store = tx.objectStore(STORE_NAME);
+      const todos = await store.getAll();
+      await tx.done;
+      return todos as Todo[];
+    },
     queryKey: ["todos"],
   });
 };
 
-export const deleteTodo = async (id: number) => {
-  const database = await initDatabase();
-  const tx = database.transaction(STORE_NAME, "readwrite");
-  const store = tx.objectStore(STORE_NAME);
-  await store.delete(id);
-  await tx.done;
-};
-
-export const deleteTodoOptions = (id: number) => {
+export const deleteTodoOptions = () => {
   return {
-    mutationFn: async () => {
-      return deleteTodo(id);
+    mutationFn: async (id: number) => {
+      const database = await initDatabase();
+      const tx = database.transaction(STORE_NAME, "readwrite");
+      const store = tx.objectStore(STORE_NAME);
+      await store.delete(id);
+      await tx.done;
     },
-    mutationKey: ["todos", "delete", id],
+    mutationKey: ["todos", "delete"],
   };
-};
-
-export const updateTodo = async (todo: Todo) => {
-  const database = await initDatabase();
-  const tx = database.transaction(STORE_NAME, "readwrite");
-  const store = tx.objectStore(STORE_NAME);
-  await store.put(todo);
-  await tx.done;
 };
 
 export const updateTodoOptions = () => {
   return {
     mutationFn: async (todo: Todo) => {
-      return updateTodo(todo);
+      const database = await initDatabase();
+      const tx = database.transaction(STORE_NAME, "readwrite");
+      const store = tx.objectStore(STORE_NAME);
+      await store.put(todo);
+      await tx.done;
     },
     mutationKey: ["todos", "update"],
   };
 };
 
-export const deleteDatabase = async () => {
-  await deleteDB(DB_NAME);
-};
-
 export const deleteDatabaseOptions = () => {
   return {
-    mutationFn: deleteDatabase,
+    mutationFn: async () => {
+      await deleteDB(DB_NAME);
+    },
     mutationKey: ["db", "delete"],
   };
 };

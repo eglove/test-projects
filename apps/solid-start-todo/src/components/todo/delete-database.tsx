@@ -1,7 +1,7 @@
 import { createMutation, useQueryClient } from "@tanstack/solid-query";
 
 import { Button } from "~/components/ui/button";
-import { deleteDatabaseOptions, getTodosOptions } from "~/data/todo-db";
+import { deleteDatabaseOptions, getTodosOptions } from "~/data/todo-database";
 import { logError } from "~/utils/console";
 
 export const DeleteDatabase = () => {

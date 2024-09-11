@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { TextField, TextFieldInput, TextFieldLabel } from "~/components/ui/text-field";
-import { getTodosOptions, type Todo, updateTodoOptions } from "~/data/todo-db";
+import { getTodosOptions, type Todo, updateTodoOptions } from "~/data/todo-database";
 import { logError } from "~/utils/console";
 
 export const EditTodo = (properties: { todo: Todo }) => {

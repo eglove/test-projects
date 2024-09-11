@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
-import { deleteTodoOptions, getTodosOptions, type Todo } from "~/data/todo-db";
+import { deleteTodoOptions, getTodosOptions, type Todo } from "~/data/todo-database";
 import { logError } from "~/utils/console";
 
 export const DeleteTodo = (properties: { todo: Todo }) => {

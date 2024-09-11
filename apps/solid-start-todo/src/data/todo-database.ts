@@ -1,5 +1,4 @@
 import { queryOptions } from "@tanstack/solid-query";
-import { data } from "autoprefixer";
 import { deleteDB, openDB } from "idb";
 
 export type Todo = {

@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { TextField, TextFieldInput, TextFieldLabel } from "~/components/ui/text-field";
-import { addTodoOptions, getTodosOptions } from "~/data/todo-db";
+import { addTodoOptions, getTodosOptions } from "~/data/todo-database";
 import { logError } from "~/utils/console";
 
 export const AddTodoModal = () => {

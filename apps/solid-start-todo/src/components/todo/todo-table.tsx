@@ -6,7 +6,7 @@ import { DeleteDatabase } from "~/components/todo/delete-database";
 import { DeleteTodo } from "~/components/todo/delete-todo";
 import { EditTodo } from "~/components/todo/edit-todo";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
-import { getTodosOptions } from "~/data/todo-db";
+import { getTodosOptions } from "~/data/todo-database";
 
 export const TodoTable = () => {
   const query = createQuery(getTodosOptions);

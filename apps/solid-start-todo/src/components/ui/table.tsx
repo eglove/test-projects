@@ -17,18 +17,22 @@ const Table: Component<ComponentProps<"table">> = (properties) => {
 
 const TableHeader: Component<ComponentProps<"thead">> = (properties) => {
   const [local, others] = splitProps(properties, ["class"]);
-  return (<thead
-    class={cn("[&_tr]:border-b", local.class)}
-    {...others}
-  />);
+  return (
+    <thead
+      class={cn("[&_tr]:border-b", local.class)}
+      {...others}
+    />
+  );
 };
 
 const TableBody: Component<ComponentProps<"tbody">> = (properties) => {
   const [local, others] = splitProps(properties, ["class"]);
-  return (<tbody
-    class={cn("[&_tr:last-child]:border-0", local.class)}
-    {...others}
-  />);
+  return (
+    <tbody
+      class={cn("[&_tr:last-child]:border-0", local.class)}
+      {...others}
+    />
+  );
 };
 
 const TableFooter: Component<ComponentProps<"tfoot">> = (properties) => {
@@ -79,10 +83,21 @@ const TableCell: Component<ComponentProps<"td">> = (properties) => {
 
 const TableCaption: Component<ComponentProps<"caption">> = (properties) => {
   const [local, others] = splitProps(properties, ["class"]);
-  return (<caption
-    class={cn("mt-4 text-sm text-muted-foreground", local.class)}
-    {...others}
-  />);
+  return (
+    <caption
+      class={cn("mt-4 text-sm text-muted-foreground", local.class)}
+      {...others}
+    />
+  );
 };
 
-export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow };
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+};

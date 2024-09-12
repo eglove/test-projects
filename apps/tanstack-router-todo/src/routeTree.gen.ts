@@ -1,5 +1,5 @@
 /* prettier-ignore-start */
-
+/* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
 
 // @ts-nocheck

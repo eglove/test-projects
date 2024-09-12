@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/button";
 import { getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/table";
 import { useQuery } from "@tanstack/react-query";
-import { PencilIcon, TrashIcon } from "lucide-react";
+import { PencilIcon } from "lucide-react";
 
 import { getTodosOptions } from "../../data/todo-database";
 import { AddTodo } from "./add-todo";

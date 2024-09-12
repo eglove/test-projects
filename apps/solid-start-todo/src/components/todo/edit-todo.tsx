@@ -71,7 +71,7 @@ export const EditTodo = (properties: { todo: Todo }) => {
             children={(field) => {
               return (
                 <TextField>
-                  <TextFieldLabel>
+                  <TextFieldLabel class="">
                     Name
                   </TextFieldLabel>
                   <TextFieldInput
@@ -80,6 +80,7 @@ export const EditTodo = (properties: { todo: Todo }) => {
                       const target = event.target as HTMLInputElement;
                       field().handleChange(target.value);
                     }}
+                    class=""
                     name={field().name}
                     onBlur={field().handleBlur}
                     type="text"

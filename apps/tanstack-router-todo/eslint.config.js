@@ -11,5 +11,6 @@ export default tseslint.config(...config, ...reactConfig, {
     },
     rules: {
         "barrel/avoid-importing-barrel-files": "off",
+        "n/no-extraneous-import": "off",
     }
 });

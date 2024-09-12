@@ -8,14 +8,16 @@ import { addTodoOptions, getTodosOptions } from "../../data/todo-database";
 
 export const AddTodo = () => {
   const queryClient = useQueryClient();
-  const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen, onClose: handleClose, onOpen, onOpenChange,
+  } = useDisclosure();
   const [name, setName] = useState("");
 
   const { isPending, mutate } = useMutation({
     ...addTodoOptions(),
-    onSettled() {
-      queryClient.invalidateQueries(getTodosOptions()).finally(() => {
-        onClose();
+    async onSettled() {
+      await queryClient.invalidateQueries(getTodosOptions()).finally(() => {
+        handleClose();
       });
     },
   });

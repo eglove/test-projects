@@ -5,6 +5,7 @@ import { PencilIcon, TrashIcon } from "lucide-react";
 
 import { getTodosOptions } from "../../data/todo-database";
 import { AddTodo } from "./add-todo";
+import { DeleteTodo } from "./delete-todo";
 
 const columns = [
   {
@@ -65,13 +66,7 @@ export const TodoTable = () => {
                               >
                                 <PencilIcon className="size-4" />
                               </Button>
-                              <Button
-                                isIconOnly
-                                className="border-0"
-                                variant="ghost"
-                              >
-                                <TrashIcon className="size-4 text-danger" />
-                              </Button>
+                              <DeleteTodo todo={item} />
                             </div>
                           </TableCell>
                         );

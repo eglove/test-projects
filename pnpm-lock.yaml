@@ -102,6 +102,9 @@ importers:
 
   apps/tanstack-router-todo:
     dependencies:
+      '@ethang/toolbelt':
+        specifier: ^4.1.1
+        version: 4.1.1(@phensley/cldr@1.9.0)(@phensley/unit-converter@1.9.0)(@tanstack/store@0.5.5)(@total-typescript/ts-reset@0.6.1)(idb@8.0.0)(immer@10.1.1)(lodash@4.17.21)(zod@3.23.8)
       '@nextui-org/button':
         specifier: ^2.0.37
         version: 2.0.37(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -117,6 +120,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.55.4
         version: 5.55.4(react@18.3.1)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.56.2
+        version: 5.56.2(@tanstack/react-query@5.55.4(react@18.3.1))(react@18.3.1)
       '@tanstack/react-router':
         specifier: ^1.57.9
         version: 1.57.9(@tanstack/router-generator@1.57.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -129,6 +135,9 @@ importers:
       idb:
         specifier: ^8.0.0
         version: 8.0.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       lucide-react:
         specifier: ^0.439.0
         version: 0.439.0(react@18.3.1)
@@ -148,6 +157,9 @@ importers:
       '@tanstack/router-plugin':
         specifier: ^1.57.9
         version: 1.57.9(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
+      '@types/lodash':
+        specifier: ^4.17.7
+        version: 4.17.7
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.4.2
@@ -1611,6 +1623,18 @@ packages:
       '@typescript-eslint/utils': ^8.5.0
       lodash: ^4.17.21
 
+  '@ethang/toolbelt@4.1.1':
+    resolution: {integrity: sha512-3H5RCI2AH8kNCNopaUgrmtp4/HHvvPjssoAaRGoy1qIHnr1b4rJlxDHjet7iAlLwl0cHU47P8qd8rq3P+YhN+w==}
+    peerDependencies:
+      '@phensley/cldr': ^1.9.0
+      '@phensley/unit-converter': ^1.9.0
+      '@tanstack/store': ^0.5.5
+      '@total-typescript/ts-reset': ^0.6.1
+      idb: ^8.0.0
+      immer: ^10.1.1
+      lodash: ^4.17.21
+      zod: ^3.23.8
+
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
@@ -2363,6 +2387,42 @@ packages:
   '@parcel/watcher@2.4.1':
     resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
     engines: {node: '>= 10.0.0'}
+
+  '@phensley/cldr-core@1.9.0':
+    resolution: {integrity: sha512-ia3BmNmGJAvMhOR5+ILnmv7OatX9zSB2a9cSDzBGxRrMv0IwpO4pE8DaAM+dwTtDKvE/yu4lziyoLoE70wImlw==}
+
+  '@phensley/cldr-types@1.9.0':
+    resolution: {integrity: sha512-92ycuMIejJ+tMKi4hDonJXFkViUqJqrBT26Azya6CRPmvLxpo6MlWfEAoqcVwCEKcXJq/D1+/9dTZMHHI00quQ==}
+
+  '@phensley/cldr-utils@1.9.0':
+    resolution: {integrity: sha512-hNXFP42ZFYfx2oCAT7PcZm8OwLpZkKMihJRCd7rsfoc7ghcmtD5HG07plTKhu4OyPeEQNAWmxeuk6GH8SSwVGQ==}
+
+  '@phensley/cldr@1.9.0':
+    resolution: {integrity: sha512-4p+xCLRgLcfCj+oMqyUYgzNu7eJWqhwlCZ+EmpZGVUvf6s7KSfMkzeRdoROTkgiwctVb20OSNzSP8DFCGVk85w==}
+
+  '@phensley/decimal@1.9.0':
+    resolution: {integrity: sha512-mD1QKMqDqdm0nMxv5R16yqiLPbz9QGCG+BsfSJhYc22rROFRmXFUbsc+DP4+f7mcZPsPcDR03B5s8+2Ut8DQ0g==}
+
+  '@phensley/language-tag@1.9.0':
+    resolution: {integrity: sha512-nj2uFsnp2SSD/DEGvLqcrpTXerIe9yShGndnwY7p3Z6Ep4m6+GkrgZCNJUc8rKcXWgQmRGC2TUzwG/LlBVtuCA==}
+
+  '@phensley/locale-matcher@1.9.0':
+    resolution: {integrity: sha512-/cfxhrTQU8vGc9r0p9rdAEvUNOPIGkF1oPyNzyg/gFNa9yv5qPUm30XlYF+KD6zM8wLWCT1ABD8KGpV6aEFnnw==}
+
+  '@phensley/locale@1.9.0':
+    resolution: {integrity: sha512-9K+AMi7qTTIhfVkmvuM9QZ5K16/GtDe7MX1d8LsDPnGdCMifsJp0ji0R6GgiHIf50/otwhjO8nlCXGKXa82yIw==}
+
+  '@phensley/messageformat@1.9.0':
+    resolution: {integrity: sha512-6D4GL0ciwXnvgTEpfXgcKiGDyT0BILNh7qw3HIndwp1IkWKO+WGaJ5N71dNiudOFUQCQKWtxC3G9b/jfHkLIiw==}
+
+  '@phensley/plurals@1.9.0':
+    resolution: {integrity: sha512-vukInL2RPywl+bUWD9MqTVfz7L0VozlnuFck6aY5pqWutICcX+FikMk/j318NjNjCVdDSE10LUrEkK/3rBHqBg==}
+
+  '@phensley/timezone@1.9.0':
+    resolution: {integrity: sha512-4RNSMyI/yhNafRmjlGDbUNuw/N8SmPCNc3t7FBGL0H1hXOx9wEsUivtwZNSyN49tAvF9PHwlzTudXjKB6gXPsA==}
+
+  '@phensley/unit-converter@1.9.0':
+    resolution: {integrity: sha512-XdlGwfwQKDOlMUgWZf05jcAQ/ZAgvlaV1UiYvQJma090VcKLjOnvKlHtbV1fXDz3L+icTyeHAcgiNTMV6dAGeA==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -3187,6 +3247,15 @@ packages:
   '@tanstack/query-devtools@5.55.1':
     resolution: {integrity: sha512-2g0TWQGlkyHs9maHIU5A7lRunG4Rj3Y5lOEenE+fydE4zk7GqRs7rKJBp7F74iqRo/cA9V6t1YYQWqd6YRBmcQ==}
 
+  '@tanstack/query-devtools@5.56.1':
+    resolution: {integrity: sha512-xnp9jq/9dHfSCDmmf+A5DjbIjYqbnnUL2ToqlaaviUQGRTapXQ8J+GxusYUu1IG0vZMaWdiVUA4HRGGZYAUU+A==}
+
+  '@tanstack/react-query-devtools@5.56.2':
+    resolution: {integrity: sha512-7nINJtRZZVwhTTyDdMIcSaXo+EHMLYJu1S2e6FskvvD5prx87LlAXXWZDfU24Qm4HjshEtM5lS3HIOszNGblcw==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.56.2
+      react: ^18 || ^19
+
   '@tanstack/react-query@5.55.4':
     resolution: {integrity: sha512-e3uX5XkLD9oTV66/VsVpkYz3Ds/ps/Yk+V5d89xthAbtNIKKBEm4FdNb9yISFzGEGezUzVO68qmfmiSrtScvsg==}
     peerDependencies:
@@ -3269,6 +3338,9 @@ packages:
     resolution: {integrity: sha512-N42Sl02rZBMZ70iLtqsnPTtGbRwuwx+SePFdGcJiQ1JE6W8s/0lBpSi8ArGRO2I+Pg0Bn1fpzDSx3FpxhyiqJQ==}
     peerDependencies:
       zod: ^3.x
+
+  '@total-typescript/ts-reset@0.6.1':
+    resolution: {integrity: sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg==}
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
@@ -5015,6 +5087,9 @@ packages:
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
+
+  immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
 
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -8632,6 +8707,17 @@ snapshots:
       '@typescript-eslint/utils': 8.5.0(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2)
       lodash: 4.17.21
 
+  '@ethang/toolbelt@4.1.1(@phensley/cldr@1.9.0)(@phensley/unit-converter@1.9.0)(@tanstack/store@0.5.5)(@total-typescript/ts-reset@0.6.1)(idb@8.0.0)(immer@10.1.1)(lodash@4.17.21)(zod@3.23.8)':
+    dependencies:
+      '@phensley/cldr': 1.9.0
+      '@phensley/unit-converter': 1.9.0
+      '@tanstack/store': 0.5.5
+      '@total-typescript/ts-reset': 0.6.1
+      idb: 8.0.0
+      immer: 10.1.1
+      lodash: 4.17.21
+      zod: 3.23.8
+
   '@fastify/busboy@2.1.1': {}
 
   '@floating-ui/core@1.6.7':
@@ -9863,6 +9949,77 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
 
+  '@phensley/cldr-core@1.9.0':
+    dependencies:
+      '@phensley/cldr-types': 1.9.0
+      '@phensley/cldr-utils': 1.9.0
+      '@phensley/decimal': 1.9.0
+      '@phensley/language-tag': 1.9.0
+      '@phensley/locale': 1.9.0
+      '@phensley/locale-matcher': 1.9.0
+      '@phensley/messageformat': 1.9.0
+      '@phensley/plurals': 1.9.0
+      '@phensley/timezone': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/cldr-types@1.9.0':
+    dependencies:
+      tslib: 2.7.0
+
+  '@phensley/cldr-utils@1.9.0':
+    dependencies:
+      tslib: 2.7.0
+
+  '@phensley/cldr@1.9.0':
+    dependencies:
+      '@phensley/cldr-core': 1.9.0
+      '@phensley/cldr-utils': 1.9.0
+      '@phensley/messageformat': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/decimal@1.9.0':
+    dependencies:
+      tslib: 2.7.0
+
+  '@phensley/language-tag@1.9.0':
+    dependencies:
+      tslib: 2.7.0
+
+  '@phensley/locale-matcher@1.9.0':
+    dependencies:
+      '@phensley/language-tag': 1.9.0
+      '@phensley/locale': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/locale@1.9.0':
+    dependencies:
+      '@phensley/language-tag': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/messageformat@1.9.0':
+    dependencies:
+      '@phensley/cldr-utils': 1.9.0
+      '@phensley/decimal': 1.9.0
+      '@phensley/plurals': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/plurals@1.9.0':
+    dependencies:
+      '@phensley/decimal': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/timezone@1.9.0':
+    dependencies:
+      '@phensley/cldr-utils': 1.9.0
+      tslib: 2.7.0
+
+  '@phensley/unit-converter@1.9.0':
+    dependencies:
+      '@phensley/cldr-types': 1.9.0
+      '@phensley/cldr-utils': 1.9.0
+      '@phensley/decimal': 1.9.0
+      tslib: 2.7.0
+
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
@@ -11068,6 +11225,14 @@ snapshots:
 
   '@tanstack/query-devtools@5.55.1': {}
 
+  '@tanstack/query-devtools@5.56.1': {}
+
+  '@tanstack/react-query-devtools@5.56.2(@tanstack/react-query@5.55.4(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-devtools': 5.56.1
+      '@tanstack/react-query': 5.55.4(react@18.3.1)
+      react: 18.3.1
+
   '@tanstack/react-query@5.55.4(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.55.4
@@ -11163,6 +11328,8 @@ snapshots:
     dependencies:
       '@tanstack/form-core': 0.32.0
       zod: 3.23.8
+
+  '@total-typescript/ts-reset@0.6.1': {}
 
   '@tybys/wasm-util@0.9.0':
     dependencies:
@@ -13396,6 +13563,8 @@ snapshots:
   ieee754@1.2.1: {}
 
   ignore@5.3.2: {}
+
+  immer@10.1.1: {}
 
   import-fresh@3.3.0:
     dependencies:

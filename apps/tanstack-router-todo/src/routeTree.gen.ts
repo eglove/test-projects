@@ -1,5 +1,5 @@
 /* prettier-ignore-start */
-/* eslint-disable unicorn/no-abusive-eslint-disable */
+
 /* eslint-disable */
 
 // @ts-nocheck
@@ -11,9 +11,15 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as RealtimeImport } from './routes/realtime'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const RealtimeRoute = RealtimeImport.update({
+  path: '/realtime',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -31,6 +37,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/realtime': {
+      id: '/realtime'
+      path: '/realtime'
+      fullPath: '/realtime'
+      preLoaderRoute: typeof RealtimeImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -38,32 +51,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/realtime': typeof RealtimeRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/realtime': typeof RealtimeRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/realtime': typeof RealtimeRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/realtime'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/realtime'
+  id: '__root__' | '/' | '/realtime'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RealtimeRoute: typeof RealtimeRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RealtimeRoute: RealtimeRoute,
 }
 
 export const routeTree = rootRoute
@@ -78,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/realtime"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/realtime": {
+      "filePath": "realtime.tsx"
     }
   }
 }

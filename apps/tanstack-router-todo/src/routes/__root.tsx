@@ -1,6 +1,7 @@
 // eslint-disable-next-line react/naming-convention/filename
 import { NextUIProvider } from "@nextui-org/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
@@ -11,7 +12,8 @@ const RootComponent = () => {
     <QueryClientProvider client={queryClient}>
       <NextUIProvider>
         <Outlet />
-        <TanStackRouterDevtools position="bottom-right" />
+        <TanStackRouterDevtools />
+        <ReactQueryDevtools initialIsOpen={false} />
       </NextUIProvider>
     </QueryClientProvider>
   );

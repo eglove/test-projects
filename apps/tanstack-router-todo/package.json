@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "browserslist": [
+    "defaults and fully supports es6-module",
+    "maintained node versions"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "dev": "vite --port=3001",
@@ -14,6 +18,7 @@
   "devDependencies": {
     "@ethang/eslint-config": "^19.5.3",
     "@tanstack/router-plugin": "^1.57.9",
+    "@types/lodash": "^4.17.7",
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
@@ -26,15 +31,18 @@
     "vite": "^5.4.3"
   },
   "dependencies": {
+    "@ethang/toolbelt": "^4.1.1",
     "@nextui-org/button": "^2.0.37",
     "@nextui-org/modal": "^2.0.39",
     "@nextui-org/react": "^2.4.6",
     "@nextui-org/table": "^2.0.39",
     "@tanstack/react-query": "^5.55.4",
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@tanstack/react-router": "^1.57.9",
     "@tanstack/router-devtools": "^1.57.9",
     "framer-motion": "^11.5.4",
     "idb": "^8.0.0",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.439.0",
     "luxon": "^3.5.0",
     "react": "^18.3.1",

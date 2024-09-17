@@ -1,8 +1,14 @@
 import config from "@ethang/eslint-config/eslint.config.js";
 import tseslint from "typescript-eslint";
-import reactConfig from "@ethang/eslint-config/config.react.js"; // OPTIONAL
+import reactConfig from "@ethang/eslint-config/config.react.js";
 
-export default tseslint.config(...config, ...reactConfig, {
+export default tseslint.config(
+    {
+    ignores: ['**/*.gen.*']
+    },
+    ...config,
+    ...reactConfig,
+    {
     languageOptions: {
         parserOptions: {
             project: true,

@@ -11,10 +11,16 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as RealtimePushImport } from './routes/realtime-push'
 import { Route as RealtimeImport } from './routes/realtime'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const RealtimePushRoute = RealtimePushImport.update({
+  path: '/realtime-push',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const RealtimeRoute = RealtimeImport.update({
   path: '/realtime',
@@ -44,6 +50,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealtimeImport
       parentRoute: typeof rootRoute
     }
+    '/realtime-push': {
+      id: '/realtime-push'
+      path: '/realtime-push'
+      fullPath: '/realtime-push'
+      preLoaderRoute: typeof RealtimePushImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -52,36 +65,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/realtime': typeof RealtimeRoute
+  '/realtime-push': typeof RealtimePushRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/realtime': typeof RealtimeRoute
+  '/realtime-push': typeof RealtimePushRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/realtime': typeof RealtimeRoute
+  '/realtime-push': typeof RealtimePushRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/realtime'
+  fullPaths: '/' | '/realtime' | '/realtime-push'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/realtime'
-  id: '__root__' | '/' | '/realtime'
+  to: '/' | '/realtime' | '/realtime-push'
+  id: '__root__' | '/' | '/realtime' | '/realtime-push'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RealtimeRoute: typeof RealtimeRoute
+  RealtimePushRoute: typeof RealtimePushRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RealtimeRoute: RealtimeRoute,
+  RealtimePushRoute: RealtimePushRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +115,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/realtime"
+        "/realtime",
+        "/realtime-push"
       ]
     },
     "/": {
@@ -105,6 +124,9 @@ export const routeTree = rootRoute
     },
     "/realtime": {
       "filePath": "realtime.tsx"
+    },
+    "/realtime-push": {
+      "filePath": "realtime-push.tsx"
     }
   }
 }

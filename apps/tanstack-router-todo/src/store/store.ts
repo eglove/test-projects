@@ -1,5 +1,6 @@
 import { produce } from "immer";
 import get from "lodash/get.js";
+import isNil from "lodash/isNil";
 import set from "lodash/set.js";
 
 export type Listener = () => void;
@@ -25,16 +26,21 @@ export class Store<TState extends BaseRecord> {
   }
 
   public bindRef<
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-    Reference extends HTMLElement, TKey extends keyof TState,
+    TKey extends keyof TState,
+    Element extends HTMLElement,
   >(
     path: [TKey] | TKey,
-    fallback?: TState[TKey],
+    elementAccessor: keyof Element | undefined,
+    callback?: (element: Element) => void,
   ) {
-    return (element: null | Reference) => {
+    return (element: Element | null) => {
       if (element) {
         const updateElement = () => {
-          element.textContent = String(this.get(path, fallback));
+          if (!isNil(elementAccessor)) {
+            element[elementAccessor] =
+                String(this.get(path)) as Element[keyof Element];
+          }
+          callback?.(element);
         };
 
         updateElement();

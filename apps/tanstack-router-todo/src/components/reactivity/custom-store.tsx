@@ -14,7 +14,7 @@ export const CustomStore = () => {
       <div>
         Custom
       </div>
-      <div ref={store.bindRef(["count"])} />
+      <div ref={store.bindRef(["count"], "textContent")} />
       <div>
         <button
           onClick={() => {
@@ -44,5 +44,17 @@ const Wrapper = () => {
 };
 
 const Display = () => {
-  return <div ref={store.bindRef(["count"])} />;
+  return (
+    <>
+      <div ref={store.bindRef(["count"], "textContent")} />
+      <input
+        onChange={(event) => {
+          const { value } = event.target;
+          store.set(["count"], Number(value));
+        }}
+        ref={store.bindRef(["count"], "value")}
+        type="number"
+      />
+    </>
+  );
 };

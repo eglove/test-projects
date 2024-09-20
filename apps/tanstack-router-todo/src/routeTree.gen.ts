@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as RealtimePushImport } from './routes/realtime-push'
 import { Route as RealtimeImport } from './routes/realtime'
+import { Route as ReactivityPlayImport } from './routes/reactivity-play'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -24,6 +25,11 @@ const RealtimePushRoute = RealtimePushImport.update({
 
 const RealtimeRoute = RealtimeImport.update({
   path: '/realtime',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReactivityPlayRoute = ReactivityPlayImport.update({
+  path: '/reactivity-play',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -41,6 +47,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/reactivity-play': {
+      id: '/reactivity-play'
+      path: '/reactivity-play'
+      fullPath: '/reactivity-play'
+      preLoaderRoute: typeof ReactivityPlayImport
       parentRoute: typeof rootRoute
     }
     '/realtime': {
@@ -64,12 +77,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/reactivity-play': typeof ReactivityPlayRoute
   '/realtime': typeof RealtimeRoute
   '/realtime-push': typeof RealtimePushRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/reactivity-play': typeof ReactivityPlayRoute
   '/realtime': typeof RealtimeRoute
   '/realtime-push': typeof RealtimePushRoute
 }
@@ -77,27 +92,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/reactivity-play': typeof ReactivityPlayRoute
   '/realtime': typeof RealtimeRoute
   '/realtime-push': typeof RealtimePushRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/realtime' | '/realtime-push'
+  fullPaths: '/' | '/reactivity-play' | '/realtime' | '/realtime-push'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/realtime' | '/realtime-push'
-  id: '__root__' | '/' | '/realtime' | '/realtime-push'
+  to: '/' | '/reactivity-play' | '/realtime' | '/realtime-push'
+  id: '__root__' | '/' | '/reactivity-play' | '/realtime' | '/realtime-push'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ReactivityPlayRoute: typeof ReactivityPlayRoute
   RealtimeRoute: typeof RealtimeRoute
   RealtimePushRoute: typeof RealtimePushRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ReactivityPlayRoute: ReactivityPlayRoute,
   RealtimeRoute: RealtimeRoute,
   RealtimePushRoute: RealtimePushRoute,
 }
@@ -115,12 +133,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/reactivity-play",
         "/realtime",
         "/realtime-push"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/reactivity-play": {
+      "filePath": "reactivity-play.tsx"
     },
     "/realtime": {
       "filePath": "realtime.tsx"

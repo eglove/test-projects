@@ -7,12 +7,9 @@ export type Listener = () => void;
 type BaseRecord = Record<number | string | symbol, unknown>;
 
 export class Store<TState extends BaseRecord> {
-  private currentEffect: (() => void) | null = null;
-
   private readonly initialState: TState;
 
   private readonly listeners = new Set<Listener>();
-
 
   private state: TState;
 
@@ -21,23 +18,13 @@ export class Store<TState extends BaseRecord> {
     this.initialState = initialState;
   }
 
-  private effect(_function: () => void) {
-    this.currentEffect = _function;
-
-    try {
-      _function();
-    } finally {
-      this.currentEffect = null;
-    }
-  }
-
   private notifySubscribers() {
     for (const listener of this.listeners) {
       listener();
     }
   }
 
-  public bindValue<
+  public bindRef<
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
     Reference extends HTMLElement, TKey extends keyof TState,
   >(
@@ -51,8 +38,7 @@ export class Store<TState extends BaseRecord> {
         };
 
         updateElement();
-
-        this.effect(updateElement);
+        this.listeners.add(updateElement);
 
         const observer = new MutationObserver((mutations) => {
           for (const mutation of mutations) {
@@ -76,10 +62,6 @@ export class Store<TState extends BaseRecord> {
     path: [TKey] | TKey,
     fallback?: TState[TKey],
   ) {
-    if (this.currentEffect) {
-      this.listeners.add(this.currentEffect);
-    }
-
     return get(this.state, path, fallback);
   }
 

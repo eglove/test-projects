@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Store } from "../../store/store";
 
@@ -14,7 +14,7 @@ export const CustomStore = () => {
       <div>
         Custom
       </div>
-      <div ref={store.bindValue(["count"])} />
+      <div ref={store.bindRef(["count"])} />
       <div>
         <button
           onClick={() => {
@@ -44,5 +44,5 @@ const Wrapper = () => {
 };
 
 const Display = () => {
-  return <div ref={store.bindValue(["count"])} />;
+  return <div ref={store.bindRef(["count"])} />;
 };

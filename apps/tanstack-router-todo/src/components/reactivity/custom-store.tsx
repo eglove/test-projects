@@ -1,6 +1,5 @@
-import { useState } from "react";
-
-import { Store } from "../../store/store";
+import { Store } from "@ethang/store/store";
+import { useEffect, useState } from "react";
 
 const store = new Store({
   count: 0,
@@ -8,6 +7,13 @@ const store = new Store({
 
 export const CustomStore = () => {
   const [isShowingDisplay, setIsShowingDisplay] = useState(true);
+
+  useEffect(() => {
+    const link = document.querySelector<HTMLInputElement>("#id");
+    store.bindRef<HTMLInputElement>((state, element) => {
+      element.textContent = String(state.count);
+    })(link);
+  }, []);
 
   return (
     <div>
@@ -26,7 +32,7 @@ export const CustomStore = () => {
               setIsShowingDisplay(false);
             }
 
-            store.setState((state) => {
+            store.set((state) => {
               state.count = current + 1;
             });
           }}
@@ -58,7 +64,7 @@ const Display = () => {
       <input
         onChange={(event) => {
           const { value } = event.target;
-          store.setState((state) => {
+          store.set((state) => {
             state.count = Number(value);
           });
         }}

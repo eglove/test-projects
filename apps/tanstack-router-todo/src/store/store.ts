@@ -1,46 +1,32 @@
-import { produce } from "immer";
-import get from "lodash/get.js";
-import isNil from "lodash/isNil";
-import set from "lodash/set.js";
+import { type Draft, produce } from "immer";
+import isNil from "lodash/isNil.js";
 
 export type Listener = () => void;
+export type SetOptions = { notifySubscribers?: boolean };
+export type BindReferenceOptions<E, TState> = {
+  accessor?: keyof E;
+  onUpdate?: (state: TState, element: E) => void;
+};
 
-type BaseRecord = Record<number | string | symbol, unknown>;
-
-export class Store<TState extends BaseRecord> {
+export class Store<TState> {
   private readonly initialState: TState;
 
   private readonly listeners = new Set<Listener>();
 
-  private state: TState;
+  public state: TState;
 
   public constructor(initialState: TState) {
     this.state = initialState;
     this.initialState = initialState;
   }
 
-  private notifySubscribers() {
-    for (const listener of this.listeners) {
-      listener();
-    }
-  }
-
-  public bindRef<
-    TKey extends keyof TState,
-    Element extends HTMLElement,
-  >(
-    path: [TKey] | TKey,
-    elementAccessor: keyof Element | undefined,
-    callback?: (element: Element) => void,
+  public bindRef<E>(
+    onUpdate: (state: TState, element: E) => void,
   ) {
-    return (element: Element | null) => {
-      if (element) {
+    return (element: E | null) => {
+      if (!isNil(element)) {
         const updateElement = () => {
-          if (!isNil(elementAccessor)) {
-            element[elementAccessor] =
-                String(this.get(path)) as Element[keyof Element];
-          }
-          callback?.(element);
+          onUpdate(this.state, element);
         };
 
         updateElement();
@@ -54,8 +40,9 @@ export class Store<TState extends BaseRecord> {
           }
         });
 
-        if (element.parentNode) {
-          observer.observe(element.parentNode, {
+        if ((element as HTMLElement).parentNode) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          observer.observe((element as HTMLElement).parentNode!, {
             childList: true,
             subtree: true,
           });
@@ -64,41 +51,36 @@ export class Store<TState extends BaseRecord> {
     };
   }
 
-  public get<TKey extends keyof TState>(
-    path: [TKey] | TKey,
-    fallback?: TState[TKey],
-  ) {
-    return get(this.state, path, fallback);
+  public notifySubscribers() {
+    for (const listener of this.listeners) {
+      listener();
+    }
   }
 
-  public resetState() {
+  public resetState(setOptions?: SetOptions) {
     this.state = this.initialState;
-    this.notifySubscribers();
+
+    if (false === setOptions?.notifySubscribers) {
+      this.notifySubscribers();
+    }
   }
 
-  public set<TKey extends keyof TState>(
-    path: [TKey] | TKey,
-    value: TState[TKey],
+  public setState(
+    updater: (draft: Draft<TState>) => void,
+    setOptions?: SetOptions,
   ) {
-    this.state = produce(this.state, (draft) => {
-      set(draft, path, value);
-    });
+    this.state = produce(this.state, updater);
 
-    this.notifySubscribers();
+    if (false !== setOptions?.notifySubscribers) {
+      this.notifySubscribers();
+    }
   }
 
-  public setBatch<TKey extends keyof TState>(
-    batch: {
-      path: [TKey] | TKey;
-      value: TState[TKey];
-    }[],
-  ) {
-    this.state = produce(this.state, (draft) => {
-      for (const value of batch) {
-        set(draft, value.path, value.value);
-      }
-    });
+  public subscribe(listener: Listener) {
+    this.listeners.add(listener);
 
-    this.notifySubscribers();
+    return () => {
+      this.listeners.delete(listener);
+    };
   }
 }

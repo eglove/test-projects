@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Store } from "../../store/store";
 
@@ -14,16 +14,21 @@ export const CustomStore = () => {
       <div>
         Custom
       </div>
-      <div ref={store.bindRef(["count"], "textContent")} />
+      <div ref={store.bindRef((state, element) => {
+        element.textContent = String(state.count);
+      })}
+      />
       <div>
         <button
           onClick={() => {
-            const current = store.get(["count"]);
+            const current = store.state.count;
             if (9 === current) {
               setIsShowingDisplay(false);
             }
 
-            store.set(["count"], (current ?? 0) + 1);
+            store.setState((state) => {
+              state.count = current + 1;
+            });
           }}
           className="border-2 px-1"
           type="button"
@@ -46,13 +51,20 @@ const Wrapper = () => {
 const Display = () => {
   return (
     <>
-      <div ref={store.bindRef(["count"], "textContent")} />
+      <div ref={store.bindRef((state, element) => {
+        element.textContent = String(state.count);
+      })}
+      />
       <input
         onChange={(event) => {
           const { value } = event.target;
-          store.set(["count"], Number(value));
+          store.setState((state) => {
+            state.count = Number(value);
+          });
         }}
-        ref={store.bindRef(["count"], "value")}
+        ref={store.bindRef((state, element) => {
+          element.value = String(state.count);
+        })}
         type="number"
       />
     </>

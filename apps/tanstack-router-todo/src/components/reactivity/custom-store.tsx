@@ -22,7 +22,7 @@ export const CustomStore = () => {
         <button
           onClick={() => {
             const current = store.state.count;
-            if (9 === current) {
+            if (4 === current) {
               setIsShowingDisplay(false);
             }
 

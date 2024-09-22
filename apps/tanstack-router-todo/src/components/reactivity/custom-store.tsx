@@ -1,4 +1,4 @@
-import { Store } from "@ethang/store/store";
+import { Store } from "@ethang/store";
 import { useEffect, useState } from "react";
 
 const store = new Store({
@@ -10,7 +10,7 @@ export const CustomStore = () => {
 
   useEffect(() => {
     const link = document.querySelector<HTMLInputElement>("#id");
-    store.bindRef<HTMLInputElement>((state, element) => {
+    store.bind<HTMLInputElement>((state, element) => {
       element.textContent = String(state.count);
     })(link);
   }, []);
@@ -20,14 +20,16 @@ export const CustomStore = () => {
       <div>
         Custom
       </div>
-      <div ref={store.bindRef((state, element) => {
+      <div ref={store.bind((state, element) => {
         element.textContent = String(state.count);
       })}
       />
       <div>
         <button
           onClick={() => {
-            const current = store.state.count;
+            const current = store.get((state) => {
+              return state.count;
+            });
             if (4 === current) {
               setIsShowingDisplay(false);
             }
@@ -57,7 +59,7 @@ const Wrapper = () => {
 const Display = () => {
   return (
     <>
-      <div ref={store.bindRef((state, element) => {
+      <div ref={store.bind((state, element) => {
         element.textContent = String(state.count);
       })}
       />
@@ -68,7 +70,7 @@ const Display = () => {
             state.count = Number(value);
           });
         }}
-        ref={store.bindRef((state, element) => {
+        ref={store.bind((state, element) => {
           element.value = String(state.count);
         })}
         type="number"

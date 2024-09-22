@@ -7,7 +7,7 @@ import { UseState } from "../components/reactivity/use-state";
 
 export const ReactivityPlay = () => {
   return (
-    <div className="mx-auto my-4 grid w-max grid-cols-4 gap-4">
+    <div className="mx-auto my-4 flex w-max gap-4">
       <UseState />
       <TanstackStore />
       <EffectSystem />

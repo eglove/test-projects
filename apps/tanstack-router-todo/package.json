@@ -16,7 +16,7 @@
     "lint": "eslint src --fix --ignore-pattern src/routeTree.gen.ts --debug"
   },
   "devDependencies": {
-    "@ethang/eslint-config": "^19.6.7",
+    "@ethang/eslint-config": "^19.7.4",
     "@tanstack/router-plugin": "^1.58.4",
     "@types/lodash": "^4.17.7",
     "@types/luxon": "^3.4.2",
@@ -33,7 +33,7 @@
     "vite": "^5.4.7"
   },
   "dependencies": {
-    "@ethang/store": "^1.0.4",
+    "@ethang/store": "^1.0.10",
     "@ethang/toolbelt": "^4.2.7",
     "@nextui-org/button": "^2.0.38",
     "@nextui-org/modal": "^2.0.41",

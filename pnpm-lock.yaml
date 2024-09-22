@@ -103,8 +103,8 @@ importers:
   apps/tanstack-router-todo:
     dependencies:
       '@ethang/store':
-        specifier: ^1.0.10
-        version: 1.0.10(immer@10.1.1)(lodash@4.17.21)
+        specifier: ^1.0.11
+        version: 1.0.11(immer@10.1.1)
       '@ethang/toolbelt':
         specifier: ^4.2.7
         version: 4.2.7(@phensley/cldr@1.9.0)(@phensley/unit-converter@1.9.0)(@tanstack/store@0.5.5)(@total-typescript/ts-reset@0.6.1)(idb@8.0.0)(immer@10.1.1)(lodash@4.17.21)(uuid@10.0.0)(zod@3.23.8)
@@ -1639,11 +1639,10 @@ packages:
       typescript: ^5.6.2
       typescript-eslint: ^8.6.0
 
-  '@ethang/store@1.0.10':
-    resolution: {integrity: sha512-ROuDAQBLj5GM/AF+9kVaOVfSu+iXeUG79j/t03bawb31aO9G38SX4HeleJJ7s+SkBDoDz4VD3cfucfCOhQaMKQ==}
+  '@ethang/store@1.0.11':
+    resolution: {integrity: sha512-783y1caM9uNB0JXp9e9f4rFrqNNT5ZQc1SllujHyPP7E+B9513bmhCs3aF20HwRaGf8u3stKlnvrZRoD8FHECA==}
     peerDependencies:
       immer: ^10.1.1
-      lodash: ^4.17.21
 
   '@ethang/toolbelt@4.2.7':
     resolution: {integrity: sha512-6yEln00jni56w1yPSM8dFnwr98q5au0J8hCT1jT7evYxcpRaDpX2eNPOJJwPf0Wstbjt+MGArul0O4ZTVrDjKA==}
@@ -8852,10 +8851,9 @@ snapshots:
       typescript: 5.6.2
       typescript-eslint: 8.6.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)
 
-  '@ethang/store@1.0.10(immer@10.1.1)(lodash@4.17.21)':
+  '@ethang/store@1.0.11(immer@10.1.1)':
     dependencies:
       immer: 10.1.1
-      lodash: 4.17.21
 
   '@ethang/toolbelt@4.2.7(@phensley/cldr@1.9.0)(@phensley/unit-converter@1.9.0)(@tanstack/store@0.5.5)(@total-typescript/ts-reset@0.6.1)(idb@8.0.0)(immer@10.1.1)(lodash@4.17.21)(uuid@10.0.0)(zod@3.23.8)':
     dependencies:
